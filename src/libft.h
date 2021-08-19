@@ -15,30 +15,29 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-//# include <unistd.h>
+# include <unistd.h>
 # include <stdlib.h>
-//# include <corecrt_malloc.h>
 # define Null	((void *)0)
 # define True	1
 # define False	0
 
 //= Types =//
 
-typedef int					t_bool;
+typedef int			t_bool;
 
-typedef char 				t_i8;
+typedef signed char 		t_i8;
 typedef unsigned char 		t_u8;
 
-typedef short				t_i16;
+typedef signed short		t_i16;
 typedef unsigned short		t_u16;
 
-typedef int					t_i32;
+typedef signed int		t_i32;
 typedef unsigned int		t_u32;
 
-typedef long long			t_i64;
+typedef signed long long	t_i64;
 typedef unsigned long long	t_u64;
 
-typedef unsigned long long	t_size;
+typedef size_t			t_size;
 
 //= Character Utils =//
 
