@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//= Function count: 45 =//
+//= Function count: 53 =//
 //= NOTE: Only malloc(), free() & write() are allowed/necessary!!! =//
 
 #ifndef LIBFT_H
@@ -27,14 +27,13 @@
 # define I32_MAX 0x7FFFFFFF
 # define U64_MAX 0xFFFFFFFFFFFFFFFF
 # define I64_MAX 0x7FFFFFFFFFFFFFFF
-// # define SWAP(type, a, b) ({type tmp; tmp = a; a = b; b = tmp;})
 
 //= Types =//
 
 typedef int					t_bool;
 
-typedef signed char 		t_i8;
-typedef unsigned char 		t_u8;
+typedef signed char			t_i8;
+typedef unsigned char		t_u8;
 
 typedef signed short		t_i16;
 typedef unsigned short		t_u16;
@@ -57,9 +56,9 @@ typedef size_t				t_size;
 t_bool	ft_isascii(t_i32 c);
 
 /** 
- * Checks whether a given char is a valid upper or lowercase alphabetical character.
+ * Checks whether a given char is a valid alphabetical character.
  * @param c The character to test.
- * @returns Whether c is an alphabetical character or not.
+ * @returns Whether c is a valid alphabetical character or not.
  */
 t_bool	ft_isalpha(t_i32 c);
 
@@ -92,30 +91,30 @@ t_bool	ft_isspace(t_i32 c);
 t_bool	ft_isprint(t_i32 c);
 
 /** 
- * Checks whether a given character is a valid, printable character.
+ * Checks whether a given character is in uppercase
  * @param c The character to test.
- * @returns Whether c is a valid, printable character.
+ * @returns Whether c is in uppercase.
  */
 t_bool	ft_isupper(t_i32 c);
 
 /** 
- * Checks whether a given character is a valid, printable character.
+ * Checks whether a given character is in lowercase
  * @param c The character to test.
- * @returns Whether c is a valid, printable character.
+ * @returns Whether c is in lowercase.
  */
 t_bool	ft_islower(t_i32 c);
 
 /** 
- * Checks whether a given character is a valid, printable character.
- * @param c The character to test.
- * @returns Whether c is a valid, printable character.
+ * Converts the given alphabetical character to uppercase.
+ * @param c The character to convert.
+ * @returns The character in uppercase.
  */
 t_i32	ft_toupper(t_i32 c);
 
 /** 
- * Checks whether a given character is a valid, printable character.
- * @param c The character to test.
- * @returns Whether c is a valid, printable character.
+ * Converts the given alphabetical character to lowercase.
+ * @param c The character to convert.
+ * @returns The character in lowercase.
  */
 t_i32	ft_tolower(t_i32 c);
 
@@ -130,7 +129,7 @@ t_i32	ft_atoi(const char *str);
 
 /** 
  * Converts a given integer to a string, any failure will return Null.
- * @param str The int to convert.
+ * @param n The int to convert.
  * @returns The int converted to a string, or Null.
  */
 char	*ft_itoa(t_i32 n);
@@ -138,14 +137,14 @@ char	*ft_itoa(t_i32 n);
 //= String Utils =//
 
 /** 
- * Iterates over the string and makes every possible uppers every char.
+ * Iterates over the string and makes every possible char to uppercase.
  * @param str The string.
  * @returns The string itself.
  */
 char	*ft_strtoupper(char *str);
 
 /** 
- * Iterates over the string and makes every possible lowers every char.
+ * Iterates over the string and makes every possible char to lowercase.
  * @param str The string.
  * @returns The string itself.
  */
@@ -182,20 +181,6 @@ char	*ft_strchr(const char *s, t_i32 c);
  */
 char	*ft_strrchr(const char *s, t_i32 c);
 
-t_i32	ft_strncmp(const char *s1, const char *s2, t_size n);
-
-t_size	strlcpy(char *dst, const char *src, t_size size);
-
-t_size	strlcat(char *dst, const char *src, t_size size);
-
-char	*ft_strnstr(const char *big, const char *little, t_size ln);
-
-char	*ft_strdup(const char *s1);
-
-char	*ft_strrev(const char *str);
-
-char	*ft_substr(char const *s, t_u32 start, t_size len);
-
 /** 
  * Counts the number of occurences of a given char in a string.
  * @param str The string
@@ -204,32 +189,142 @@ char	*ft_substr(char const *s, t_u32 start, t_size len);
  */
 t_i32	ft_strchrn(const char *str, char c);
 
+/** 
+ * Counts the number of occurences of a given char in a string.
+ * @param str The string
+ * @param c The char to count for.
+ * @returns The number of occurences of the given delimiter.
+ */
+char	*ft_strjoinch(char const *s, char c);
 
 /** 
+ * Compares the two given strings up until n.
+ * @param s1 The first string.
+ * @param s2 The second string.
+ * @param n Limiter, as in, compare up to n chars.
+ * @returns 0 if equal > or < than 0 if not equal.
+ */
+t_i32	ft_strncmp(const char *s1, const char *s2, t_size n);
+
+/** 
+ * Copy the string from src to dst, secure from buffer overflows 
+ * using the full size of the destination string as a size parameter.
+ * @param dst The destination string to copy to.
+ * @param src The source string to copy from.
+ * @param size The size of dst.
+ * @returns The total length of the string they tried to create.
+ */
+t_size	strlcpy(char *dst, const char *src, t_size size);
+
+/** 
+ * Concatonate the string from src to dst, secure from buffer overflows 
+ * using the full size of the destination string as a size parameter.
+ * @param dst The destination string to copy to.
+ * @param src The source string to copy from.
+ * @param size The size of dst.
+ * @returns The total length of the string they tried to create.
+ */
+t_size	strlcat(char *dst, const char *src, t_size size);
+
+/** 
+ * Searches for the first occurence of the little string in big.
+ * @param big The source string to search in.
+ * @param little The string we are searching for in big.
+ * @param ln Length of big.
+ * @returns Ptr to the first occurence of little in big.
+ */
+char	*ft_strnstr(const char *big, const char *little, t_size ln);
+
+/** 
+ * Duplicates a given string, with an allocation.
+ * @param s1 The string to duplicate.
+ * @returns Ptr to the newly allocated duplicate string.
+ */
+char	*ft_strdup(const char *s1);
+
+/** 
+ * Reverses a string by modifying it.
+ * @param str The string to reverse.
+ * @returns Ptr to the string itself.
+ */
+char	*ft_strrev(char *str);
+
+/** 
+ * Allocates and returns a substring from the string ’s’.
+ * @param s The string from which to create the substring.
+ * @param start  The start index of the substring in the string ’s’
+ * @param len The maximum length of the substring.
+ * @returns The substring. NULL if the allocation fails.
+ */
+char	*ft_substr(char const *s, t_u32 start, t_size len);
+
+/** 
+ * Allocates and returns a new string, which is the result of 
+ * the concatenation of ’s1’ and ’s2’.
+ * @param s1 The prefix string.
+ * @param s2 The suffix string.
  * @returns The string result of the concatenation of the two strings.
  */
 char	*ft_strjoin(char const *s1, char const *s2);
 
 /** 
+ * Allocates and returns a copy of ’s1’ with the characters specified in ’set’,
+ * removed from the beginning and the end of the string.
  * @param s1 The string to be trimmed.
  * @param set The reference set of characters to trim.
- * @returns 
+ * @returns The trimmed string. NULL if the allocation fails.
  */
 char	*ft_strtrim(char const *s1, char const *set);
 
 /** 
- * Splits a given string at every delimiter and bundles them into an array.
+ * Allocates and returns an array of strings obtained by 
+ * splitting ’s’ using the character ’c’ as a delimiter. 
+ * The array ends with a NULL pointer.
  * @param s The string to be split.
  * @param c The char delimiter.
  * @returns A string array.
  */
-char 	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c);
 
 /** 
- * Executes a function on each char of the given string.
- * @returns 
+ * Applies the function ’f’ to each character of the 
+ * string ’s’ to create a new string resulting 
+ * from successive applications of ’f’.
+ * @param s The string on which to iterate.
+ * @param f The function to apply to each character.
+ * @returns The string created from the successive applications of ’f’. 
+ * Returns NULL if the allocation fails.
+ */
+char	*ft_strmap(char const *s, char (*f)(char));
+
+/** 
+ * Applies the function ’f’ to each character of the 
+ * string ’s’ to create a new string resulting 
+ * from successive applications of ’f’.
+ * @param s The string on which to iterate.
+ * @param f The function to apply to each character.
+ * @returns The string created from the successive applications of ’f’. 
+ * Returns NULL if the allocation fails.
  */
 char	*ft_strmapi(char const *s, char (*f)(t_u32, char));
+
+/** 
+ * Applies the function f to each character of the 
+ * string passed as argument, and passing its index as first argument. 
+ * Each character is passed by address to f to be modified if necessary.
+ * @param s The string on which to iterate.
+ * @param f The function to apply to each character.
+ */
+void	ft_striter(char *s, void (*f)( char*));
+
+/** 
+ * Applies the function f to each character of the 
+ * string passed as argument, and passing its index as first argument. 
+ * Each character is passed by address to f to be modified if necessary.
+ * @param s The string on which to iterate.
+ * @param f The function to apply to each character.
+ */
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 //= IO Utils =//
 
@@ -369,7 +464,7 @@ void	*ft_memset(void *b, t_i32 c, t_size len);
 /** 
  * Sets all bytes in source to Null.
  * @param s The source.
- * @param n Size of source.
+ * @param n Size of source, in bytes.
  */
 void	ft_bzero(void *s, t_size n);
 

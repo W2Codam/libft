@@ -1,5 +1,8 @@
 # CODAM
 
+Function count: `50`
+Bonus: `Perhaps?`
+
 ## LIBFT
 
 The libft project builds on the concepts you learned during the C Piscine. 
@@ -8,6 +11,8 @@ This will save you a lot of precious time and effort.
 
 The following assignments will have you write lines of code you already wrote during the Piscine.
 See the libft project as a refresher for what you learned in the piscine and use it wisely to assess your level and progress
+
+In reality this is probably 
 
 ### Compiling
 
