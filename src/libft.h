@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//= Function count: 53 =//
+//= Function count: 55 =//
 //= NOTE: Only malloc(), free() & write() are allowed/necessary!!! =//
 
 #ifndef LIBFT_H
@@ -19,14 +19,22 @@
 # include <stdlib.h>
 # define TRUE	1
 # define FALSE	0
-# define U8_MAX 0xFF
+
+# define U8_MAX 0xFF 
 # define I8_MAX 0x7F
+# define I8_MIN -0x80
+
 # define U16_MAX 0xFFFF
 # define I16_MAX 0x7FFF
+# define I16_MIN -0x8000
+
 # define U32_MAX 0xFFFFFFFF
 # define I32_MAX 0x7FFFFFFF
+# define I32_MIN -0x80000000
+
 # define U64_MAX 0xFFFFFFFFFFFFFFFF
 # define I64_MAX 0x7FFFFFFFFFFFFFFF
+# define I64_MIN -0x8000000000000000
 
 //= Types =//
 
@@ -45,6 +53,15 @@ typedef signed long long	t_i64;
 typedef unsigned long long	t_u64;
 
 typedef size_t				t_size;
+
+// The different types of commonly used bases.
+typedef enum e_base
+{
+	BINARY = 2,
+	OCTAL = 8,
+	DECIMAL = 10,
+	HEXADECIMAL = 16
+}	t_base;
 
 //= Character Utils =//
 
@@ -118,6 +135,16 @@ t_i32	ft_toupper(t_i32 c);
  */
 t_i32	ft_tolower(t_i32 c);
 
+//= Int Utils =//
+
+/** 
+ * Returns the number of digits depending on the base in a given base.
+ * @param n The int to test.
+ * @param base The base to use.
+ * @returns The int converted to a string, or Null.
+ */
+t_i32	ft_intlen(t_i32 n, t_base base);
+
 //= Converters =//
 
 /** 
@@ -129,10 +156,21 @@ t_i32	ft_atoi(const char *str);
 
 /** 
  * Converts a given integer to a string, any failure will return Null.
+ * @note nbr = (nbr * 10) + (str[i++] - '0');
  * @param n The int to convert.
  * @returns The int converted to a string, or Null.
  */
 char	*ft_itoa(t_i32 n);
+
+/** 
+ * Converts a given integer to a string, any failure will return Null.
+ * @note Take num % base, then /= base, remainder is index, reverse loop!
+ * @see https://bit.ly/2UA4CmX
+ * @param n The int to convert.
+ * @param base The base to use for conversion.
+ * @returns The int converted to a string, or Null.
+ */
+char	*ft_itoa_base(t_i32 n, t_base base);
 
 //= String Utils =//
 
@@ -231,7 +269,7 @@ t_size	strlcat(char *dst, const char *src, t_size size);
  * @param big The source string to search in.
  * @param little The string we are searching for in big.
  * @param ln Length of big.
- * @returns Ptr to the first occurence of little in big.
+ * @returns Ptr to the first occurence of little in big, else null.
  */
 char	*ft_strnstr(const char *big, const char *little, t_size ln);
 
@@ -400,7 +438,7 @@ t_i32	ft_neg(t_i32 val);
 
 /** 
 return (a * (a <= b) + b * (b < a));
- * Returns the absolute value of a given integer.
+ * Returns the minimum value of two given integers.
  * @param valA The left value.
  * @param valB The right value.
  * @returns The smallest value of the two.
@@ -409,7 +447,7 @@ t_i32	ft_min(t_i32 valA, t_i32 valB);
 
 /** 
  * return (a * (a >= b) + b * (b > a));
- * Returns the absolute value of a given integer.
+ * Returns the maximum value of two given integers.
  * @param valA The left value.
  * @param valB The right value.
  * @returns The biggest value of the two.
@@ -425,7 +463,7 @@ t_i32	ft_max(t_i32 valA, t_i32 valB);
 t_i32	ft_pow(t_i32 base, t_i32 exp);
 /*
 	if (exp > 0)
-		return (base * power(base, exp - 1));
+		return (base * pow(base, exp - 1));
 	return (1);
 */
 
@@ -442,7 +480,8 @@ t_i32	ft_sqrt(t_i32 num);
 	t_i32 sqrt;
 
 	sqrt = 0;
-	while ((sqrt * sqrt) <= num && sqrt <= 46340) // <- Biggest possible square root within int32
+	while ((sqrt * sqrt) <= num && sqrt <= 46340) 
+	// <- Biggest possible square root within int32
 	{
 		if ((sqrt * sqrt) == num)
 			break ;

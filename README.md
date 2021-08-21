@@ -1,6 +1,6 @@
 # CODAM
 
-Function count: `53`
+Function count: `55`
 Bonus: `Perhaps?`
 
 ## LIBFT
