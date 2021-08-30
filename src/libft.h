@@ -12,6 +12,7 @@
 
 //= Function count: 55 =//
 //= NOTE: Only malloc(), free() & write() are allowed/necessary!!! =//
+//= TODO: Add dynamic sizeable strings & arrays =//
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -393,7 +394,7 @@ void	ft_putnbr(t_i32 n);
 void	ft_putnbr_fd(t_i32 n, t_i32 fd);
 
 /** 
- * Prints out a given char to a given file descriptor.
+ * Prints out a given char to standart output.
  * @param s The character to write.
  */
 void	ft_putendl(const char *s);
@@ -406,7 +407,7 @@ void	ft_putendl(const char *s);
 void	ft_putendl_fd(const char *s, t_i32 fd);
 
 /** 
- * Prints out a given char to a given file descriptor.
+ * Prints out a given char to standart output.
  * @param s The character to write.
  */
 void	ft_putstr(const char *s);
