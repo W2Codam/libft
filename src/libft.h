@@ -229,7 +229,7 @@ char	*ft_strrchr(const char *s, t_i32 c);
 t_i32	ft_strchrn(const char *str, char c);
 
 /** 
- * Counts the number of occurences of a given char in a string.
+* Appends the given char to the given string.
  * @param str The string
  * @param c The char to count for.
  * @returns The number of occurences of the given delimiter.
