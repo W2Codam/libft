@@ -318,6 +318,12 @@ char	*ft_strtrim(char const *s1, char const *set);
 /** 
  * Allocates and returns an array of strings obtained by 
  * splitting ’s’ using the character ’c’ as a delimiter. 
+ * 
+ * NOTE:
+ *  - Malloc N amount of char*'s per string that is between a delimiter.
+ *  - Malloc N amount of chars per that string's length.
+ *  - Return out.
+ * 
  * The array ends with a NULL pointer.
  * @param s The string to be split.
  * @param c The char delimiter.
