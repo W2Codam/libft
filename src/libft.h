@@ -428,7 +428,7 @@ void	ft_putstr_fd(const char *s, t_i32 fd);
 //= Math Utils =//
 
 /** 
- * return ((x < 0) * (-x) + (x >= 0) * (x));
+ * return ((val < 0) * (-val) + (val >= 0) * (val));
  * Returns the absolute value of a given integer.
  * @param val The value.
  * @returns The value as a positive.
@@ -436,7 +436,7 @@ void	ft_putstr_fd(const char *s, t_i32 fd);
 t_i32	ft_abs(t_i32 val);
 
 /** 
- * return ((x < 0) * (x) + (x >= 0) * (-x));
+ * return ((val < 0) * (val) + (val >= 0) * (-val));
  * Returns the negative value of a given integer.
  * @param val The value.
  * @returns The value as a negative.
@@ -444,7 +444,7 @@ t_i32	ft_abs(t_i32 val);
 t_i32	ft_neg(t_i32 val);
 
 /** 
-return (a * (a <= b) + b * (b < a));
+return (valA * (valA <= valB) + valB * (valB < valA));
  * Returns the minimum value of two given integers.
  * @param valA The left value.
  * @param valB The right value.
@@ -453,7 +453,7 @@ return (a * (a <= b) + b * (b < a));
 t_i32	ft_min(t_i32 valA, t_i32 valB);
 
 /** 
- * return (a * (a >= b) + b * (b > a));
+ * return (valA * (valA >= valB) + valB * (valB > valA));
  * Returns the maximum value of two given integers.
  * @param valA The left value.
  * @param valB The right value.
