@@ -229,14 +229,6 @@ char	*ft_strrchr(const char *s, t_i32 c);
 t_i32	ft_strchrn(const char *str, char c);
 
 /** 
-* Appends the given char to the given string.
- * @param str The string
- * @param c The char to count for.
- * @returns The number of occurences of the given delimiter.
- */
-char	*ft_strjoinch(char const *s, char c);
-
-/** 
  * Compares the two given strings up until n.
  * @param s1 The first string.
  * @param s2 The second string.
@@ -513,6 +505,17 @@ void	*ft_memset(void *b, t_i32 c, t_size len);
  * @param n Size of source, in bytes.
  */
 void	ft_bzero(void *s, t_size n);
+
+/** 
+ * Re-sizes a given memory buffer of a given size to a new size. 
+ * Attempts to copy as much as the new size allows it to. 
+ * Frees the old buffer.
+ * @param ptr The pointer to the buffer.
+ * @param old The current size of the buffer.
+ * @param new The new desired size for the buffer.
+ * @returns The new location for the buffer.
+ */
+void	*ft_realloc(void *ptr, t_size old, t_size new);
 
 /** 
  * Allocates memory of num objects of size and initializes all bytes to zero.
