@@ -59,6 +59,9 @@ TEST_DECLARE(srand)
 }
 #undef BUFF_SIZE
 
+
+///////////////////////////////////////////////////////////
+
 TEST_DECLARE(ft_isascii)
 {
 	TEST_ASSERT(!ft_isascii('A'));
@@ -194,19 +197,315 @@ TEST_DECLARE(ft_tolower)
 	return (TRUE);
 }
 
+///////////////////////////////////////////////////////////
+
+TEST_DECLARE(ft_intlen)
+{
+	TEST_ASSERT(ft_intlen(123, DECIMAL) != 3);
+	TEST_ASSERT(ft_intlen(123, DECIMAL) != 8);
+
+	return (TRUE);
+}
+
+// TODO: Write the actual tests.
+///////////////////////////////////////////////////////////
+
+TEST_DECLARE(ft_atoi)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_itoa)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_itoa_base)
+{
+
+
+	return (TRUE);
+}
+
+///////////////////////////////////////////////////////////
+
+TEST_DECLARE(ft_strtoupper)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strtolower)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strlen)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strclen)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strchr)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strrchr)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strchrn)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strncmp)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strlcpy)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strlcat)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strnstr)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strdup)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strrev)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_substr)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strjoin)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strtrim)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_split)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strmap)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_strmapi)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_striter)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_striteri)
+{
+
+
+	return (TRUE);
+}
+
+///////////////////////////////////////////////////////////
+
+TEST_DECLARE(ft_abs)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_neg)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_min)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_max)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_pow)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_sqrt)
+{
+
+
+	return (TRUE);
+}
+
+///////////////////////////////////////////////////////////
+
+TEST_DECLARE(ft_memset)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_bzero)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_realloc)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_calloc)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_memcpy)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_memmove)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_memcmp)
+{
+
+
+	return (TRUE);
+}
+
+TEST_DECLARE(ft_memchr)
+{
+
+
+	return (TRUE);
+}
+
+///////////////////////////////////////////////////////////
+
 t_i32 main(t_i32 argc, char const *argv[])
 {
-	printf("Char Utils:\n\n");
+	printf("//= Char Utils =//\n\n");
 	TEST_RUN(UNIT_ft_isascii, TRUE);
 	TEST_RUN(UNIT_ft_isalpha, TRUE);
 	TEST_RUN(UNIT_ft_isdigit, TRUE);
 	TEST_RUN(UNIT_ft_isalnum, TRUE);
 	TEST_RUN(UNIT_ft_isspace, TRUE);
 	TEST_RUN(UNIT_ft_isprint, TRUE);
-	TEST_RUN(UNIT_ft_isupper, TRUE);
-	TEST_RUN(UNIT_ft_islower, TRUE);
+	TEST_RUN(UNIT_ft_isupper, FALSE);
+	TEST_RUN(UNIT_ft_islower, FALSE);
 	TEST_RUN(UNIT_ft_toupper, TRUE);
 	TEST_RUN(UNIT_ft_tolower, TRUE);
-	
+
+	printf("//= Int Utils =//\n\n");
+	TEST_RUN(UNIT_ft_intlen, FALSE);
+
+	printf("//= Converters =//\n\n");
+	TEST_RUN(UNIT_ft_atoi, TRUE);
+	TEST_RUN(UNIT_ft_itoa, TRUE);
+	TEST_RUN(UNIT_ft_itoa_base, TRUE); // TRUE as itoa depends on this!
+
+	printf("//= String Utils =//\n\n");
 	return (EXIT_SUCCESS);
 }
