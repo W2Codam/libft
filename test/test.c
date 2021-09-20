@@ -212,22 +212,29 @@ TEST_DECLARE(ft_intlen)
 
 TEST_DECLARE(ft_atoi)
 {
-
-
+	TEST_ASSERT(ft_atoi("123") != 123);
+	TEST_ASSERT(ft_atoi("-123") != -123);
+	TEST_ASSERT(ft_atoi(":DDD") != 0);
+	TEST_ASSERT(ft_atoi(NULL) != 0);
+	TEST_ASSERT(ft_atoi("") != 0);
+	TEST_ASSERT(ft_atoi("		123") != 123);
+	TEST_ASSERT(ft_atoi("--123") != 0);
+	TEST_ASSERT(ft_atoi("A123") != 0);
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_itoa)
-{
-
-
+{	
+	TEST_ASSERT(ft_strncmp(ft_itoa(123), "123", 3));
+	TEST_ASSERT(ft_strncmp(ft_itoa(1234), "1234", 4));
+	TEST_ASSERT(ft_strncmp(ft_itoa(0), "0", 1));
+	TEST_ASSERT(ft_strncmp(ft_itoa(-1234), "-1234", 4));
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_itoa_base)
 {
-
-
+	//TODO: Finish.
 	return (TRUE);
 }
 
@@ -235,116 +242,159 @@ TEST_DECLARE(ft_itoa_base)
 
 TEST_DECLARE(ft_strtoupper)
 {
-
+	char String[] = "smoll Text :d";
+	ft_strtoupper(String);
+	TEST_ASSERT(ft_strncmp(String, "SMOLL TEXT :D", sizeof(String)))
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strtolower)
 {
-
+	char String[] = "BIG TEXT :D";
+	ft_strtolower(String);
+	TEST_ASSERT(ft_strncmp(String, "smoll text :d", sizeof(String)))
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strlen)
 {
-
+	char Test[] = "Moulinette is weak";
+	TEST_ASSERT(ft_strlen(Test) != sizeof(Test));
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strclen)
 {
-
+	char Test[] = "Moulinette is weak";
+	TEST_ASSERT(ft_strclen(Test, 'i') != 4);
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strchr)
 {
-
+	char Test[] = "Moulinette is weak";
+	char* Target = ft_strchr(Test, 't');
+	TEST_ASSERT(*Target != 't');
+	TEST_ASSERT(*(Target + 1) != 't');
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strrchr)
 {
-
+	char Test[] = "Moulinette is weak";
+	char* Target = ft_strchr(Test, 't');
+	TEST_ASSERT(*Target != 't');
+	TEST_ASSERT(*(Target + 1) != 'e');
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strchrn)
 {
-
+	char Test[] = "Moulinette is weak";
+	TEST_ASSERT(ft_strchrn(Test, 'e') != 3);
+	TEST_ASSERT(ft_strchrn(Test, 't') != 2);
+	TEST_ASSERT(ft_strchrn(Test, 'x') != 0);
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strncmp)
 {
-
+	char Test[] = "Gamer moment!";
+	TEST_ASSERT(ft_strncmp(Test, "Gamer moment!", sizeof(Test)));
+	TEST_ASSERT(ft_strncmp(Test, "Gamer mom!", sizeof(Test)));
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strlcpy)
 {
-
-
+	typedef struct s_string
+	{
+		char	*str;
+		t_size	len;
+	} String;
+	
+	char	TestData[] = "Hello World!";
+	String 	Test;
+	{
+		Test.len = sizeof(TestData);
+		Test.str = (char *)malloc(Test.len * sizeof(char) + 1);
+		ft_strlcpy(Test.str, TestData, sizeof(TestData));
+	}
+	
+	TEST_ASSERT(Test.len != sizeof(TestData));
+	TEST_ASSERT(ft_strncmp(Test.str, TestData, sizeof(TestData)));
+	free(Test.str);
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strlcat)
 {
-
-
+	char Test[13] = "Hello ";
+	ft_strlcat(Test, "World!", sizeof(Test));
+	TEST_ASSERT(ft_strncmp(Test, "Hello World!", sizeof(Test)));
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strnstr)
 {
-
-
+	char Test[] = "Hello World!";
+	char* World = ft_strnstr(Test, "World!", sizeof(Test));
+	TEST_ASSERT(World == NULL);
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strdup)
 {
-
-
+	char Test[] = "42 42 42 42";
+	char* Test2 = ft_strdup(Test);
+	TEST_ASSERT(ft_strncmp(Test, Test2, sizeof(Test)));
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strrev)
 {
-
-
+	char Test[] = "42 42 42 42";
+	ft_strrev(Test);
+	TEST_ASSERT(ft_strncmp(Test, "24 24 24 24", sizeof(Test)));
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_substr)
 {
-
-
+	char Test[] = "Hello World!";
+	char* Sub = ft_substr(Test, 5, 6);
+	TEST_ASSERT(ft_strncmp(Sub, "World!", 6));
+	free(Sub);
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strjoin)
 {
-
+	char* TestA = "Hello ";
+	char* TestB = "World!";
+	char* New = ft_strjoin(TestA, TestB);
+	TEST_ASSERT(ft_strncmp(New, "Hello World!", 13));
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_strtrim)
 {
-
-
+	char* Test = "Hello*&+ World*&+!*&+";
+	ft_strtrim(Test, "*&+");
+	TEST_ASSERT(ft_strncmp(Test, "Hello World!", 13));
 	return (TRUE);
 }
 
+//TODO: Implement test
 TEST_DECLARE(ft_split)
 {
 
@@ -384,28 +434,34 @@ TEST_DECLARE(ft_striteri)
 
 TEST_DECLARE(ft_abs)
 {
-
+	TEST_ASSERT(ft_abs(-123) != 123);
+	TEST_ASSERT(ft_abs(123) != 123);
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_neg)
 {
-
+	TEST_ASSERT(ft_neg(-123) != -123);
+	TEST_ASSERT(ft_neg(123) != -123);
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_min)
 {
-
+	TEST_ASSERT(ft_min(0, 1) == 1);
+	TEST_ASSERT(ft_min(1, 0) == 1);
+	TEST_ASSERT(ft_min(-11, 0) != -11);
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_max)
 {
-
+	TEST_ASSERT(ft_min(0, 1) == 0);
+	TEST_ASSERT(ft_min(1, 0) == 0);
+	TEST_ASSERT(ft_min(-11, 0) != 0);
 
 	return (TRUE);
 }
@@ -486,6 +542,14 @@ TEST_DECLARE(ft_memchr)
 
 t_i32 main(t_i32 argc, char const *argv[])
 {
+
+	/**
+	 * TRUE = Required function
+	 * FALSE = Non-required function
+	 * If any of the TRUE tests fail defence is over.
+	 * If any of the FALSE tests fail, can be ignored.
+	*/
+
 	printf("//= Char Utils =//\n\n");
 	TEST_RUN(UNIT_ft_isascii, TRUE);
 	TEST_RUN(UNIT_ft_isalpha, TRUE);
@@ -502,10 +566,52 @@ t_i32 main(t_i32 argc, char const *argv[])
 	TEST_RUN(UNIT_ft_intlen, FALSE);
 
 	printf("//= Converters =//\n\n");
-	TEST_RUN(UNIT_ft_atoi, TRUE);
-	TEST_RUN(UNIT_ft_itoa, TRUE);
+	TEST_RUN(UNIT_ft_atoi, 		TRUE);
+	TEST_RUN(UNIT_ft_itoa, 		TRUE);
 	TEST_RUN(UNIT_ft_itoa_base, TRUE); // TRUE as itoa depends on this!
 
 	printf("//= String Utils =//\n\n");
+	TEST_RUN(UNIT_ft_strtoupper, 	FALSE);
+	TEST_RUN(UNIT_ft_strtolower, 	FALSE);
+	TEST_RUN(UNIT_ft_strlen, 		TRUE);
+	TEST_RUN(UNIT_ft_strclen, 		FALSE);
+	TEST_RUN(UNIT_ft_strchr, 		TRUE);
+	TEST_RUN(UNIT_ft_strrchr, 		TRUE);
+	TEST_RUN(UNIT_ft_strchrn, 		FALSE);
+	TEST_RUN(UNIT_ft_strncmp, 		TRUE);
+	TEST_RUN(UNIT_ft_strlcpy, 		TRUE);
+	TEST_RUN(UNIT_ft_strlcat, 		TRUE);
+	TEST_RUN(UNIT_ft_strnstr, 		TRUE);
+	TEST_RUN(UNIT_ft_strdup, 		TRUE);
+	TEST_RUN(UNIT_ft_strrev, 		FALSE);
+	TEST_RUN(UNIT_ft_substr, 		TRUE);
+	TEST_RUN(UNIT_ft_strjoin, 		TRUE);
+	TEST_RUN(UNIT_ft_strtrim, 		TRUE);
+	TEST_RUN(UNIT_ft_split, 		TRUE);
+	TEST_RUN(UNIT_ft_strmap, 		FALSE);
+	TEST_RUN(UNIT_ft_strmapi, 		TRUE);
+	TEST_RUN(UNIT_ft_striter, 		FALSE);
+	TEST_RUN(UNIT_ft_striteri, 		TRUE);
+
+	printf("//= Math Utils =//\n\n");
+	TEST_RUN(UNIT_ft_abs, 	FALSE);
+	TEST_RUN(UNIT_ft_neg, 	FALSE);
+	TEST_RUN(UNIT_ft_min, 	FALSE);
+	TEST_RUN(UNIT_ft_max, 	FALSE);
+	TEST_RUN(UNIT_ft_pow, 	FALSE);
+	TEST_RUN(UNIT_ft_sqrt, 	FALSE);
+
+	// All memory functions should work 100% of the time, regardless if required or not.
+	printf("//= Memory Utils =//\n\n");
+	TEST_RUN(UNIT_ft_memset, 	TRUE);
+	TEST_RUN(UNIT_ft_bzero, 	TRUE);
+	TEST_RUN(UNIT_ft_realloc, 	TRUE);
+	TEST_RUN(UNIT_ft_calloc, 	TRUE);
+	TEST_RUN(UNIT_ft_memcpy, 	TRUE);
+	TEST_RUN(UNIT_ft_memmove, 	TRUE);
+	TEST_RUN(UNIT_ft_memcmp, 	TRUE);
+	TEST_RUN(UNIT_ft_memchr, 	TRUE);
+
+	printf("Result: ALL OK!\n");
 	return (EXIT_SUCCESS);
 }
