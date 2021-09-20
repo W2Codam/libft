@@ -245,7 +245,7 @@ t_i32	ft_strncmp(const char *s1, const char *s2, t_size n);
  * @param size The size of dst.
  * @returns The total length of the string they tried to create.
  */
-t_size	strlcpy(char *dst, const char *src, t_size size);
+t_size	ft_strlcpy(char *dst, const char *src, t_size size);
 
 /** 
  * Concatonate the string from src to dst, secure from buffer overflows 
@@ -255,7 +255,7 @@ t_size	strlcpy(char *dst, const char *src, t_size size);
  * @param size The size of dst.
  * @returns The total length of the string they tried to create.
  */
-t_size	strlcat(char *dst, const char *src, t_size size);
+t_size	ft_strlcat(char *dst, const char *src, t_size size);
 
 /** 
  * Searches for the first occurence of the little string in big.
