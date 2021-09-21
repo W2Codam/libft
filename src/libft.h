@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//= Function count: 55 =//
+//= Function count: 56 =//
 //= NOTE: Only malloc(), free() & write() are allowed/necessary!!! =//
 //= TODO: Add dynamic sizeable strings & arrays =//
 
@@ -352,7 +352,7 @@ char	*ft_strmapi(char const *s, char (*f)(t_u32, char));
  * @param s The string on which to iterate.
  * @param f The function to apply to each character.
  */
-void	ft_striter(char *s, void (*f)( char*));
+void	ft_striter(char *s, void (*f)(char *));
 
 /** 
  * Applies the function f to each character of the 
@@ -361,7 +361,7 @@ void	ft_striter(char *s, void (*f)( char*));
  * @param s The string on which to iterate.
  * @param f The function to apply to each character.
  */
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_striteri(char *s, void (*f)(t_u32, char *));
 
 //= IO Utils =//
 
@@ -376,46 +376,46 @@ void	ft_putchar(char c);
  * @param c The character to write.
  * @param fd The file descriptor.
  */
-void	ft_putchar_fd(char c, t_i32 fd);
+void	ft_fputchar(char c, t_i32 fd);
 
 /** 
  * Prints out a given number to standart output.
- * @param n The character to write.
+ * @param n The number to write.
  */
 void	ft_putnbr(t_i32 n);
 
 /** 
- * Prints out a given char to a given file descriptor.
- * @param n The character to write.
+ * Prints out a given number to a given file descriptor.
+ * @param n The number to write.
  * @param fd The file descriptor.
  */
-void	ft_putnbr_fd(t_i32 n, t_i32 fd);
+void	ft_fputnbr(t_i32 n, t_i32 fd);
 
 /** 
- * Prints out a given char to standart output.
- * @param s The character to write.
+ * Prints out a given string to standart output.
+ * @param s The string to write.
  */
 void	ft_putendl(const char *s);
 
 /** 
- * Prints out a given char to a given file descriptor.
- * @param s The character to write.
+ * Prints out a given string to a given file descriptor with a newline.
+ * @param s The string to write.
  * @param fd The file descriptor.
  */
-void	ft_putendl_fd(const char *s, t_i32 fd);
+void	ft_fputendl(const char *s, t_i32 fd);
 
 /** 
  * Prints out a given char to standart output.
- * @param s The character to write.
+ * @param s The string to write.
  */
 void	ft_putstr(const char *s);
 
 /** 
- * Prints out a given char to a given file descriptor.
- * @param s The character to write.
+ * Prints out a given string to a given file descriptor.
+ * @param s The string to write.
  * @param fd The file descriptor.
  */
-void	ft_putstr_fd(const char *s, t_i32 fd);
+void	ft_fputstr(const char *s, t_i32 fd);
 
 //= Math Utils =//
 
@@ -468,7 +468,6 @@ t_i32	ft_pow(t_i32 base, t_i32 exp);
 
 /** 
  * Calculates the square root of an int.
- * WARNING: Operation is quite slow with big numbers, improve in the future.
  * 
  * @param num The number to retrieve the square root from.
  * @returns The square root of num or 0 if irrational.

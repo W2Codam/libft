@@ -59,7 +59,6 @@ TEST_DECLARE(srand)
 }
 #undef BUFF_SIZE
 
-
 ///////////////////////////////////////////////////////////
 
 TEST_DECLARE(ft_isascii)
@@ -207,7 +206,6 @@ TEST_DECLARE(ft_intlen)
 	return (TRUE);
 }
 
-// TODO: Write the actual tests.
 ///////////////////////////////////////////////////////////
 
 TEST_DECLARE(ft_atoi)
@@ -394,39 +392,83 @@ TEST_DECLARE(ft_strtrim)
 	return (TRUE);
 }
 
-//TODO: Implement test
 TEST_DECLARE(ft_split)
 {
+	// Test A
+	{
+		t_i32 i = -1;
+		char* Trg[] = {"Hello", "World", "!"};
+		char* Src[] = ft_split("Hello*World*!", '*');
+		TEST_ASSERT(!Src);
 
+		while (Src[++i])
+			TEST_ASSERT(ft_strncmp(Src[i], Trg[i], ft_strlen(Trg[i])));
 
+		free(Src);
+	}
+
+	// Test B
+	{
+		t_i32 i = -1;
+		char* Trg = "APPLE42";
+		char* Src[] = ft_split("***A*P*P***L****E*4***2**", '*');
+		TEST_ASSERT(!Src);
+		t_size len = ft_strlen(Trg);
+
+		while (Trg[++i])
+			TEST_ASSERT(Src[0] != Trg[i]);
+
+		free(Src);
+	}
+	
 	return (TRUE);
 }
+
+///////////////////////////////////////////////////////////
 
 TEST_DECLARE(ft_strmap)
 {
-
-
+	char Trg[] = "HELLO WORLD!";
+	char* Src = ft_strmap("Hello World!", &ft_toupper);
+	TEST_ASSERT(!Src);
+	TEST_ASSERT(ft_strncmp(Src, Trg, sizeof(Trg)));
+	free(Src);
 	return (TRUE);
 }
 
+char LeekSpeekM(t_u32 I, char C)
+{
+	return (I % 2 == 0 ? ft_toupper(C) : ft_tolower(C));
+}
 TEST_DECLARE(ft_strmapi)
 {
-
-
+	char Trg[] = "HeLlO WoRlD!";
+	char* Src = ft_strmapi("Hello World!", &LeekSpeekM);
+	TEST_ASSERT(!Src);
+	TEST_ASSERT(ft_strncmp(Src, Trg, sizeof(Trg)));
+	free(Src);
 	return (TRUE);
 }
+
+///////////////////////////////////////////////////////////
 
 TEST_DECLARE(ft_striter)
 {
-
-
+	char Trg[] = "hElLo wOrLd!";
+	ft_striter(Trg, &ft_toupper);
+	TEST_ASSERT(ft_strncmp("HELLO WORLD!", Trg, sizeof(Trg)));
 	return (TRUE);
 }
 
+void LeekSpeekI(t_u32 I, char* C)
+{
+	*C = (I % 2 == 0 ? ft_toupper(*C) : ft_tolower(*C));
+}
 TEST_DECLARE(ft_striteri)
 {
-
-
+	char Trg[] = "hello world!";
+	ft_striteri(Trg, &LeekSpeekI);
+	TEST_ASSERT(ft_strncmp("HeLlO WoRlD!", Trg, sizeof(Trg)));
 	return (TRUE);
 }
 
@@ -484,14 +526,26 @@ TEST_DECLARE(ft_sqrt)
 
 TEST_DECLARE(ft_memset)
 {
+	t_i32 i = -1;
+	t_size Size = 64;
+	t_u8* block = (t_u8 *)malloc(Size * sizeof(t_u8));
 
+	memset(block, U8_MAX, Size);
+	while (++i < Size)
+		TEST_ASSERT(block[i] != U8_MAX);
 
 	return (TRUE);
 }
 
 TEST_DECLARE(ft_bzero)
 {
+	t_i32 i = -1;
+	t_size Size = 64;
+	t_u8* block = (t_u8 *)malloc(Size * sizeof(t_u8));
 
+	ft_bzero(block, Size);
+	while (++i < Size)
+		TEST_ASSERT(block[i] != '\0');
 
 	return (TRUE);
 }
