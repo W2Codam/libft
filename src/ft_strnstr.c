@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/04 18:08:42 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/04 18:13:44 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/05 13:27:30 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ char	*ft_strnstr(const char *big, const char *little, t_size ln)
 	i = 0;
 	j = 0;
 	if (!little)
-		return (big);
+		return ((char *)big);
 	while (big[i] != '\0' && i < ln)
 	{
 		while (big[i + j] == little[j] && i + j < ln)
 		{
 			if (little[++j] == '\0')
-				return (&big[i]);
+				return (&((char *)big)[i]);
 		}
 		j = 0;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/04 17:48:24 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/04 17:50:49 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/05 13:16:59 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ char	*ft_strchr(const char *s, t_i32 c)
 	i = 0;
 	while (s[i] != '\0' && s[i] != c)
 		i++;
-	return (&s[i]);
+	return (&((char *)s)[i]);
 }

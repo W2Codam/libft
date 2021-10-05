@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 09:33:52 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 09:55:53 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/05 13:27:54 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static t_size	ft_trimlen(char const *s1, char const *set)
 	t_size	i;
 	t_size	ln;
 
+	i = 0;
 	ln = 0;
 	while (s1[i] != '\0')
 	{
