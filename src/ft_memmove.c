@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 10:12:19 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 10:37:41 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/05 13:11:00 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	*ft_memmove(void *dst, const void *src, t_size len)
 	else
 	{
 		while (i < len)
-			((t_u8 *)dst)[i] = ((t_u8 *)src)[i++];
+		{
+			((t_u8 *)dst)[i] = ((t_u8 *)src)[i];
+			i++;
+		}
 	}
 	return (dst);
 }

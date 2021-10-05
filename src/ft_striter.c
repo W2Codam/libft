@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 09:57:39 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 10:29:35 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/05 13:19:12 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_striter(char *s, void (*f)(char *))
 	t_u64	i;
 
 	i = 0;
-	if (!s)
-		return (NULL);
+	if (!s || !f)
+		return ;
 	while (s[i] != '\0')
 		f(&s[i]);
 }
