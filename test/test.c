@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   test.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/10 20:41:14 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2021/09/10 20:41:14 by W2Wizard      ########   odam.nl         */
+/*   Updated: 2021/10/05 11:51:36 by W2Wizard      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void free_n(int n, ...)
 
 	va_end(ptrs);
 }
-
+/*
 t_i32 ft_srand(t_i32 Seed)
 {
 	static t_i32 x;
@@ -58,7 +58,7 @@ TEST_DECLARE(srand)
 	return (TRUE);
 }
 #undef BUFF_SIZE
-
+*/
 ///////////////////////////////////////////////////////////
 
 TEST_DECLARE(ft_isascii)
@@ -398,8 +398,8 @@ TEST_DECLARE(ft_split)
 	{
 		t_i32 i = -1;
 		char* Trg[] = {"Hello", "World", "!"};
-		char* Src[] = ft_split("Hello*World*!", '*');
-		TEST_ASSERT(!Src);
+		char** Src = ft_split("Hello*World*!", '*');
+		TEST_ASSERT(!*Src);
 
 		while (Src[++i])
 			TEST_ASSERT(ft_strncmp(Src[i], Trg[i], ft_strlen(Trg[i])));
@@ -411,12 +411,12 @@ TEST_DECLARE(ft_split)
 	{
 		t_i32 i = -1;
 		char* Trg = "APPLE42";
-		char* Src[] = ft_split("***A*P*P***L****E*4***2**", '*');
-		TEST_ASSERT(!Src);
+		char** Src = ft_split("***A*P*P***L****E*4***2**", '*');
+		TEST_ASSERT(!*Src);
 		t_size len = ft_strlen(Trg);
 
 		while (Trg[++i])
-			TEST_ASSERT(Src[0] != Trg[i]);
+			TEST_ASSERT((*Src)[0] != Trg[i]);
 
 		free(Src);
 	}
@@ -428,14 +428,15 @@ TEST_DECLARE(ft_split)
 
 TEST_DECLARE(ft_strmap)
 {
+	/*
 	char Trg[] = "HELLO WORLD!";
 	char* Src = ft_strmap("Hello World!", &ft_toupper);
 	TEST_ASSERT(!Src);
 	TEST_ASSERT(ft_strncmp(Src, Trg, sizeof(Trg)));
 	free(Src);
+	*/
 	return (TRUE);
 }
-
 char LeekSpeekM(t_u32 I, char C)
 {
 	return (I % 2 == 0 ? ft_toupper(C) : ft_tolower(C));
@@ -454,9 +455,11 @@ TEST_DECLARE(ft_strmapi)
 
 TEST_DECLARE(ft_striter)
 {
+	/*
 	char Trg[] = "hElLo wOrLd!";
 	ft_striter(Trg, &ft_toupper);
 	TEST_ASSERT(ft_strncmp("HELLO WORLD!", Trg, sizeof(Trg)));
+	*/
 	return (TRUE);
 }
 
