@@ -18,7 +18,7 @@ SRCDIR	= src
 # AR is an archiving tool: r = Insert the files | s = Write an object-file index (ranlib) | c = Create
 AR		= ar rsc
 
-SRCS 	= $(shell find $(SRCDIR) -name *.c)
+SRCS 	= $(shell find $(SRCDIR) -name "*.c")
 OBJS    = $(SRCS:.c=.o)
 
 # Compile
