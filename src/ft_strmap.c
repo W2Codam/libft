@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 09:57:39 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 13:20:53 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/07 10:24:34 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 char	*ft_strmap(char const *s, char (*f)(char))
 {
-	t_u64	i;
+	t_size	i;
 	char	*out;
 
 	i = 0;
-	out = (char *)malloc(ft_strlen(s) * sizeof(char) + 1);
-	if (!out || !f)
+	if (!f)
+		return (NULL);
+	out = (char *)ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!out)
 		return (NULL);
 	while (s[i] != '\0')
+	{
 		out[i] = f(s[i]);
+		i++;
+	}
+	out[i] = '\0';
 	return (out);
 }

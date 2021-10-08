@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_toupper.c                                       :+:    :+:            */
+/*   ft_putendl_fd.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/04 14:03:41 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/06 09:16:13 by lde-la-h      ########   odam.nl         */
+/*   Created: 2021/10/05 10:33:39 by lde-la-h      #+#    #+#                 */
+/*   Updated: 2021/10/06 17:03:11 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool	ft_toupper(t_i32 c)
+void	ft_putendl_fd(const char *s, t_i32 fd)
 {
-	if (ft_islower(c))
-		return (c - 32);
-	return (c);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

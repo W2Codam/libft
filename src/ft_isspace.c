@@ -6,14 +6,14 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/04 14:03:41 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/04 14:13:37 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/05 15:07:27 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool	ft_isascii(t_i32 c)
+t_bool	ft_isspace(t_i32 c)
 {
 	return (c == '\t' || c == '\n' || c == '\v' \
-		 || c == '\f' || c == ' ');
+		 || c == '\f' || c == '\r' || c == ' ');
 }

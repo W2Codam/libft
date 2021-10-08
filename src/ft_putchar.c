@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 10:31:57 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 10:32:38 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/06 17:03:11 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putchar(char c)
 {
-	ft_fputchar(c, 1);
+	ft_putchar_fd(c, 1);
 }

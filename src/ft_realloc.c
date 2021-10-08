@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 10:51:43 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 13:12:20 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/08 13:04:38 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	*ft_realloc(void *ptr, t_size old, t_size new)
 		return (ptr);
 	else
 	{
-		newptr = malloc(new);
-		ft_memmove(newptr, ptr, old);
+		newptr = ft_memmove(malloc(new), ptr, old);
 		free(ptr);
 	}
 	return (newptr);

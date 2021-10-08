@@ -6,35 +6,45 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/04 14:39:28 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/04 15:10:05 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/07 09:47:40 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static char	*ft_zero(void)
+{
+	char	*out;
+
+	out = (char *)ft_calloc(2, sizeof(char));
+	out[0] = '0';
+	return (out);
+}
+
 char	*ft_itoa_base(t_i32 n, t_base base)
 {
-	t_i32	len;
-	t_i32	i;
-	char	*out;
-	char	*HEX_STRING;
+	char		*out;
+	const char	*HEX;
+	t_i32		nbrlen;
 
-	i = 0;
-	len = ft_intlen(n, base);
-	HEX_STRING = "0123456789ABCDEF";
+	HEX = "0123456789ABCDEF";
+	nbrlen = ft_intlen(ft_abs(n), base);
+	if (n == 0)
+		return (ft_zero());
 	if (n < 0)
-		len++;
-	out = (char *)malloc(len * sizeof(char) + 1);
+		nbrlen++;
+	out = ft_calloc(nbrlen + 1, sizeof(char));
+	if (!out)
+		return (NULL);
 	if (n < 0)
 	{
-		out[i++] = '-';
+		out[0] = '-';
 		n = ft_abs(n);
 	}
 	while (n)
 	{
-		out[i++] = HEX_STRING[n % base];
+		out[--nbrlen] = HEX[n % base];
 		n /= base;
 	}
-	out[len] = '\0';
 	return (out);
 }

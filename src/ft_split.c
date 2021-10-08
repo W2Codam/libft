@@ -6,16 +6,16 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/04 14:53:36 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 13:15:41 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/08 14:43:55 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_i32	ft_wcount(const char *str, char c)
+static t_u32	ft_wcount(const char *str, char c)
 {
-	t_i32	w;
-	t_i32	i;
+	t_u32	w;
+	t_size	i;
 
 	i = -1;
 	w = 0;
@@ -29,26 +29,58 @@ static t_i32	ft_wcount(const char *str, char c)
 	return (w);
 }
 
-char	**ft_split(char const *s, char c)
+static void	ft_cleanup(char **out)
 {
-	char	**out;
-	t_i64	sindex;
-	t_i64	windex;
-	t_i32	wcout;
-	t_i32	ccout;
+	t_u32	i;
 
+	i = 0;
+	while (out[i] != NULL)
+		free(out[i]);
+	return ;
+}
+
+static t_bool	ft_allocate(char **out, t_u32 wcount, char const *s, char c)
+{
+	t_size	windex;
+	t_size	sindex;
+	t_size	wlen;
+
+	windex = 0;
 	sindex = 0;
-	windex = -1;
-	wcout = ft_wcount(s, c);
-	out = (char **)ft_calloc(wcout + 1, sizeof(char *));
-	while (++windex < wcout)
+	while (windex < wcount)
 	{
 		while (s[sindex] == c)
 			sindex++;
-		ccout = ft_strclen(&s[sindex], c);
-		out[windex] = (char *)malloc(ccout * sizeof(char) + 1);
-		if (out[windex])
-			sindex += ft_strlcpy(out[windex], &s[sindex], ccout);
+		wlen = ft_strclen(&s[sindex], c);
+		out[windex] = (char *)ft_calloc(wlen + 1, sizeof(char));
+		if (!out[windex])
+			return (FALSE);
+		ft_strlcpy(out[windex++], &s[sindex], wlen + 1);
+		sindex += wlen;
+	}
+	return (TRUE);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**out;
+	t_u32	wcount;
+	t_bool	isempty;
+
+	wcount = ft_wcount(s, c);
+	isempty = (wcount == 0);
+	if (isempty)
+		wcount++;
+	out = (char **)ft_calloc(wcount + 1, sizeof(char *));
+	if (!out)
+		return (NULL);
+	if (!*s || isempty)
+		return (out);
+	if (!ft_allocate(out, wcount, s, c))
+	{
+		ft_cleanup(out);
+		free(out);
+		return (NULL);
 	}
 	return (out);
 }

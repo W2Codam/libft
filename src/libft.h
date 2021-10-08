@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   libft.h                                          	:+:    :+:            */
+/*   libft.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
+/*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/08/08 17:38:51 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2021/08/08 17:38:51 by W2Wizard      ########   odam.nl         */
+/*   Created: 2021/10/04 14:00:33 by lde-la-h      #+#    #+#                 */
+/*   Updated: 2021/10/07 10:24:25 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,14 +180,14 @@ char	*ft_itoa_base(t_i32 n, t_base base);
  * @param str The string.
  * @returns The string itself.
  */
-char	*ft_strtoupper(char *str);
+void	ft_strtoupper(char *str);
 
 /** 
  * Iterates over the string and makes every possible char to lowercase.
  * @param str The string.
  * @returns The string itself.
  */
-char	*ft_strtolower(const char *str);
+void	ft_strtolower(char *str);
 
 /** 
  * Retrieves the length of a given string.
@@ -376,7 +376,7 @@ void	ft_putchar(char c);
  * @param c The character to write.
  * @param fd The file descriptor.
  */
-void	ft_fputchar(char c, t_i32 fd);
+void	ft_putchar_fd(char c, t_i32 fd);
 
 /** 
  * Prints out a given number to standart output.
@@ -389,7 +389,7 @@ void	ft_putnbr(t_i32 n);
  * @param n The number to write.
  * @param fd The file descriptor.
  */
-void	ft_fputnbr(t_i32 n, t_i32 fd);
+void	ft_putnbr_fd(t_i32 n, t_i32 fd);
 
 /** 
  * Prints out a given string to standart output.
@@ -402,7 +402,7 @@ void	ft_putendl(const char *s);
  * @param s The string to write.
  * @param fd The file descriptor.
  */
-void	ft_fputendl(const char *s, t_i32 fd);
+void	ft_putendl_fd(const char *s, t_i32 fd);
 
 /** 
  * Prints out a given char to standart output.
@@ -415,12 +415,11 @@ void	ft_putstr(const char *s);
  * @param s The string to write.
  * @param fd The file descriptor.
  */
-void	ft_fputstr(const char *s, t_i32 fd);
+void	ft_putstr_fd(const char *s, t_i32 fd);
 
 //= Math Utils =//
 
 /** 
- * return ((val < 0) * (-val) + (val >= 0) * (val));
  * Returns the absolute value of a given integer.
  * @param val The value.
  * @returns The value as a positive.
@@ -436,7 +435,6 @@ t_i32	ft_abs(t_i32 val);
 t_i32	ft_neg(t_i32 val);
 
 /** 
-return (valA * (valA <= valB) + valB * (valB < valA));
  * Returns the minimum value of two given integers.
  * @param valA The left value.
  * @param valB The right value.
@@ -445,7 +443,6 @@ return (valA * (valA <= valB) + valB * (valB < valA));
 t_i32	ft_min(t_i32 valA, t_i32 valB);
 
 /** 
- * return (valA * (valA >= valB) + valB * (valB > valA));
  * Returns the maximum value of two given integers.
  * @param valA The left value.
  * @param valB The right value.
@@ -460,11 +457,6 @@ t_i32	ft_max(t_i32 valA, t_i32 valB);
  * @returns The given base by the power of the exponent.
  */
 t_i32	ft_pow(t_i32 base, t_i32 exp);
-/*
-	if (exp > 0)
-		return (base * pow(base, exp - 1));
-	return (1);
-*/
 
 /** 
  * Calculates the square root of an int.
@@ -473,21 +465,6 @@ t_i32	ft_pow(t_i32 base, t_i32 exp);
  * @returns The square root of num or 0 if irrational.
  */
 t_i32	ft_sqrt(t_i32 num);
-/*
-{
-	t_i32 sqrt;
-
-	sqrt = 0;
-	while ((sqrt * sqrt) <= num && sqrt <= 46340) 
-	// <- Biggest possible square root within int32
-	{
-		if ((sqrt * sqrt) == num)
-			break ;
-		sqrt++;
-	}
-	return (sqrt);
-}
-*/
 
 //= Memory Magic =//
 
@@ -549,7 +526,7 @@ void	*ft_memmove(void *dst, const void *src, t_size len);
  * @param s1 Source.
  * @param s2 Target.
  * @param n Size of s1.
- * @returns Ptr to the first occurence in source,
+ * @returns The difference between the bytes, 0 if equal.
  */
 t_i32	ft_memcmp(const void *s1, const void *s2, t_size n);
 

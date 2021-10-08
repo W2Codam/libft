@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 10:33:39 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 10:38:33 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/06 17:03:11 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putendl(const char *s)
 {
-	ft_fputendl(s, 1);
+	ft_putendl_fd(s, 1);
 }

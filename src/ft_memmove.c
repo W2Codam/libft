@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 10:12:19 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 13:11:00 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/10/06 21:34:17 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void	*ft_memmove(void *dst, const void *src, t_size len)
 {
-	t_u64	i;
+	t_size	i;
 
+	if (!dst || !src)
+		return (NULL);
 	i = 0;
-	if (src > dst)
+	if (src < dst)
 	{
 		while (len-- > 0)
 			((t_u8 *)dst)[len] = ((t_u8 *)src)[len];
