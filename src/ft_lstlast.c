@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_fputstr.c                                       :+:    :+:            */
+/*   ft_lstlast_bonus.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/05 10:41:56 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 10:42:18 by lde-la-h      ########   odam.nl         */
+/*   Created: 2021/10/11 12:33:30 by lde-la-h      #+#    #+#                 */
+/*   Updated: 2021/10/12 14:07:49 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_fputstr(const char *s, t_i32 fd)
+t_list	*ft_lstlast(t_list *lst)
 {
-	write(fd, s, ft_strlen(s));
+	while (lst)
+	{
+		if (!lst->next)
+			break ;
+		lst = lst->next;
+	}
+	return (lst);
 }

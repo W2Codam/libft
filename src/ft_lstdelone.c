@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strtoupper.c                                    :+:    :+:            */
+/*   ft_lstdelone_bonus.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/04 17:44:56 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 13:33:29 by lde-la-h      ########   odam.nl         */
+/*   Created: 2021/10/11 12:33:34 by lde-la-h      #+#    #+#                 */
+/*   Updated: 2021/10/12 14:07:54 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_upper_it(char *c)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	*c = ft_toupper(*c);
-}
-
-void	ft_strtoupper(char *str)
-{
-	ft_striter(str, &ft_upper_it);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
 }

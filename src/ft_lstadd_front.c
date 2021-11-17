@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_substr.c                                        :+:    :+:            */
+/*   ft_lstadd_front_bonus.c                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/05 09:15:14 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/11/08 16:49:29 by lde-la-h      ########   odam.nl         */
+/*   Created: 2021/10/11 12:33:38 by lde-la-h      #+#    #+#                 */
+/*   Updated: 2021/10/13 12:02:29 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-char	*ft_substr(char const *s, t_u32 start, t_size len)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	char	*sub;
-	t_size	strln;
-
-	strln = ft_strlen(s);
-	if (start > strln)
-		return (ft_strdup(""));
-	if (len > strln - start)
-		return (ft_strdup(s + start));
-	sub = (char *)malloc((len + 1) * sizeof(char));
-	if (!sub)
-		return (NULL);
-	ft_strlcpy(sub, &s[start], len + 1);
-	sub[len] = '\0';
-	return (sub);
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

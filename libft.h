@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/04 14:00:33 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/07 10:24:25 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/11/17 10:25:01 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # define LIBFT_H
 # include <unistd.h>
 # include <stdlib.h>
-# define TRUE	1
-# define FALSE	0
+# include <stdbool.h>
 
 # define U8_MAX 0xFF 
 # define I8_MAX 0x7F
@@ -37,9 +36,12 @@
 # define I64_MAX 0x7FFFFFFFFFFFFFFF
 # define I64_MIN -0x8000000000000000
 
+# define BUFF_SIZE	5120
+# define FD_MAX		1024
+
 //= Types =//
 
-typedef int					t_bool;
+typedef bool				t_bool;
 
 typedef signed char			t_i8;
 typedef unsigned char		t_u8;
@@ -55,6 +57,19 @@ typedef unsigned long long	t_u64;
 
 typedef size_t				t_size;
 
+typedef struct s_fd_data
+{
+	char	*data;
+	t_bool	read;
+}	t_fd_data;
+
+// Single linked list.
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
 // The different types of commonly used bases.
 typedef enum e_base
 {
@@ -63,6 +78,15 @@ typedef enum e_base
 	DECIMAL = 10,
 	HEXADECIMAL = 16
 }	t_base;
+
+//= GNL =//
+
+/**
+ * Reads the given file for a single line. Each next call gives the next line.
+ * @param fd The file descriptor to read from.
+ * @returns NULL if nothing read or error, else the line.
+ */
+char	*ft_get_next_line(int fd);
 
 //= Character Utils =//
 
@@ -174,6 +198,14 @@ char	*ft_itoa(t_i32 n);
 char	*ft_itoa_base(t_i32 n, t_base base);
 
 //= String Utils =//
+
+/** 
+ * Appens s2 to s1 (assuming they are heap allocated!).
+ * @param s1 A heap allocated string.
+ * @param s2 A heap allocated string.
+ * @returns s1 with s2 appended to it, in a new string.
+ */
+char	*ft_strapp(char const *s1, char const *s2);
 
 /** 
  * Iterates over the string and makes every possible char to uppercase.
@@ -538,5 +570,73 @@ t_i32	ft_memcmp(const void *s1, const void *s2, t_size n);
  * @returns Ptr to the first occurence in source.
  */
 void	*ft_memchr(const void *s, t_i32 c, t_size n);
+
+//= Linked List =//
+
+/** 
+ * Allocates and returns a new element.
+ * The variable 'content' is initialized 
+ * with the value of the parameter 'content'.
+ * The variable 'next' is initialized to NULL.
+ * 
+ * @param content The data to assign to the node.
+ * @returns Pointer to the new list.
+ */
+t_list	*ft_lstnew(void *content);
+
+/** 
+ * Retrieves the size of the list aka
+ * count of nodes.
+ * @param lst The list.
+ */
+t_i32	ft_lstsize(t_list *lst);
+
+t_list	*ft_lstlast(t_list *lst);
+
+/** 
+ * Adds the element 'new' at the beginning of the list.
+ * New->A->B->C->D->?
+ */
+void	ft_lstadd_front(t_list **lst, t_list *new);
+
+/** 
+ * Adds the element 'new' at the end of the list.
+ * ?->A->B->C->D->New
+ */
+void	ft_lstadd_back(t_list **lst, t_list *new);
+
+/** 
+ * Deletes the the given element using del.
+ * @param lst The list
+ * @param del The function used to delete.
+ */
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+
+/** 
+ * Deletes and frees the given element and every 
+ * successor of that element, using the function 'del' 
+ * and free(3). 
+ * Finally, the pointer to the list must be set to NULL.
+ */
+void	ft_lstclear(t_list **lst, void (*del)(void*));
+
+/** 
+ * Iterates the list 'lst' and applies the function 
+ * 'f' to the content of each element.
+ */
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+/** 
+ * Horrible description...
+ * 
+ * Iterates the list 'lst' and applies the function 
+ * 'f' to the content of each element.
+ * 
+ * Creates a new list resulting of the successive applications of 
+ * the function 'f'.  
+ * 
+ * The 'del' function is used to delete the content of an element if needed.
+ */
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

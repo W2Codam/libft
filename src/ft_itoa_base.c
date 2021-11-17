@@ -6,34 +6,25 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/04 14:39:28 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/07 09:47:40 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2021/11/17 10:48:08 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_zero(void)
-{
-	char	*out;
-
-	out = (char *)ft_calloc(2, sizeof(char));
-	out[0] = '0';
-	return (out);
-}
-
 char	*ft_itoa_base(t_i32 n, t_base base)
 {
-	char		*out;
-	const char	*HEX;
-	t_i32		nbrlen;
+	char	*out;
+	char	*HEX;
+	t_i32	numlen;
 
+	if (!n)
+		return (ft_strdup("0"));
 	HEX = "0123456789ABCDEF";
-	nbrlen = ft_intlen(ft_abs(n), base);
-	if (n == 0)
-		return (ft_zero());
+	numlen = ft_intlen(n, base);
 	if (n < 0)
-		nbrlen++;
-	out = ft_calloc(nbrlen + 1, sizeof(char));
+		numlen++;
+	out = ft_calloc(numlen + 1, sizeof(char));
 	if (!out)
 		return (NULL);
 	if (n < 0)
@@ -43,7 +34,7 @@ char	*ft_itoa_base(t_i32 n, t_base base)
 	}
 	while (n)
 	{
-		out[--nbrlen] = HEX[n % base];
+		out[--numlen] = HEX[n % base];
 		n /= base;
 	}
 	return (out);

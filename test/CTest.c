@@ -6,7 +6,7 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/10 20:41:14 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2021/10/05 11:51:36 by W2Wizard      ########   odam.nl         */
+/*   Updated: 2021/11/17 10:13:46 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
  * @param n Count.
  * @param ... The ptrs.
  */
-void free_n(int n, ...)
+void	free_n(int n, ...)
 {
-	va_list ptrs;
-	va_start(ptrs, n);
+	t_i32	i;
+	va_list	ptrs;
 
-	t_i32 i = -1;
+	i = -1;
+	va_start(ptrs, n);
 	while (++i < n)
 		free(va_arg(ptrs, void*));
-
 	va_end(ptrs);
 }
 /*

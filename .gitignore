@@ -53,5 +53,4 @@ dkms.conf
 
 #Misc
 .vscode
-main
-main.c
+.DS_Store

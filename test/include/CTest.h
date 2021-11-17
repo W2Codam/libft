@@ -6,17 +6,16 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/10 15:22:50 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2021/09/10 15:22:50 by W2Wizard      ########   odam.nl         */
+/*   Updated: 2021/11/17 10:15:06 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef C_TEST_H
-#define C_TEST_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <memory.h>
+# define C_TEST_H
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdint.h>
+# include <memory.h>
 
 // Error message buffer for when a test fails.
 char	ErrMsg[128];
@@ -33,7 +32,7 @@ char	ErrMsg[128];
 		sprintf(ErrMsg, "Fail Reason: \"%s\"\n", #Condition);	\
 		return (0);												\
 	}															\
-	
+
 /** 
  * Simple wrapper to standardized functions marked for testing.
  * @param Name The desirec name for the test function.
@@ -48,7 +47,6 @@ char	ErrMsg[128];
  */
 #define TEST_RUN(Func, ExitAtFail) 				\
 	Internal_Test(#Func, &Func, ExitAtFail);	\
-
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strtolower.c                                    :+:    :+:            */
+/*   ft_lstsize_bonus.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/04 17:45:49 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/10/05 13:33:31 by lde-la-h      ########   odam.nl         */
+/*   Created: 2021/10/11 12:33:24 by lde-la-h      #+#    #+#                 */
+/*   Updated: 2021/10/13 12:20:19 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_lower_it(char *c)
+t_i32	ft_lstsize(t_list *lst)
 {
-	*c = ft_tolower(*c);
-}
+	t_i32	i;
 
-void	ft_strtolower(char *str)
-{
-	ft_striter(str, &ft_lower_it);
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
