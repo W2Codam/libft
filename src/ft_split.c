@@ -36,7 +36,7 @@ static void	ft_cleanup(char **out)
 
 	i = 0;
 	while (out[i] != NULL)
-		free(out[i]);
+		free(out[i++]);
 	return ;
 }
 
