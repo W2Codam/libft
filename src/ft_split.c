@@ -66,16 +66,12 @@ char	**ft_split(char const *s, char c)
 {
 	char	**out;
 	t_u32	wcount;
-	t_bool	isempty;
 
 	wcount = ft_wcount(s, c);
-	isempty = (wcount == 0);
-	if (isempty)
-		wcount++;
 	out = (char **)ft_calloc(wcount + 1, sizeof(char *));
 	if (!out)
 		return (NULL);
-	if (!*s || isempty)
+	if (!*s || wcount == 0)
 		return (out);
 	if (!ft_allocate(out, wcount, s, c))
 	{
