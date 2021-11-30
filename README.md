@@ -25,5 +25,13 @@ Run the following commands:
 * To re-compile:
 	- `make re`
 
+## Skills
+- Objectives
+- Unix logic
+- Skills
+- Imperative programming
+- Rigor
+- Algorithms & AI
+
 # Result
 ![Result](/img/Result.png)
