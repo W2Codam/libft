@@ -24,3 +24,6 @@ Run the following commands:
 	- `make fclean`
 * To re-compile:
 	- `make re`
+
+# Result
+![Result](/img/Result.png)
