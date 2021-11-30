@@ -26,9 +26,7 @@ Run the following commands:
 	- `make re`
 
 ## Skills
-- Objectives
 - Unix logic
-- Skills
 - Imperative programming
 - Rigor
 - Algorithms & AI
