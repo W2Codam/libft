@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    makefile                                           :+:    :+:             #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: lde-la-h <lde-la-h@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/08 11:13:32 by lde-la-h      #+#    #+#                  #
-#    Updated: 2021/11/17 12:16:58 by lde-la-h      ########   odam.nl          #
+#    Updated: 2021/12/01 14:42:07 by lde-la-h      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,25 +107,20 @@ all: $(NAME)
 # To create the .o files, take the .c file and
 # use -c to compile or assemble the source file, then -o to output.
 %.o: %.c
+	@printf	"$(GREEN)\rCompiling: $(notdir $<) 🔨$(RESET)"
 	@$(CC) $(CFLAGS) -o $@ -c $< -I $(HEADER)
 
-# Print helper
-libcomp:
-	@echo "$(WHITE)[INFO]$(GREEN) Compiling $(NAME)...$(RESET)"
 # Compile everything, first create the objects.
-$(NAME): libcomp $(OBJS)
+$(NAME): $(OBJS)
 	@$(AR) $(NAME) $(OBJS)
-	@echo "$(WHITE)[INFO]$(GREEN) Created $(NAME)!$(RESET)"
 
 # Clean object files
 clean:
 	@rm -f $(OBJS)
-	@echo "$(WHITE)[INFO]$(RED) All object files removed!$(RESET)"
 
 # Clean library file
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(WHITE)[INFO]$(RED) $(NAME) removed!$(RESET)"
 
 # Re-compile
 re:	fclean all
