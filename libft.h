@@ -6,7 +6,7 @@
 /*   By: lde-la-h <lde-la-h@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/04 14:00:33 by lde-la-h      #+#    #+#                 */
-/*   Updated: 2021/11/17 10:25:01 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/02/15 20:54:45 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_fd_data
 typedef struct s_list
 {
 	void			*content;
+	struct s_list	*prev;
 	struct s_list	*next;
 }	t_list;
 
